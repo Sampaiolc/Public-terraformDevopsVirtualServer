@@ -24,7 +24,7 @@ resource "azurerm_subnet" "vNetSubnet" {
 
 //Create Pulic IP
 
-resource "azurerm_public_ip" "publicIP" {
+resource "azurerm_public_ip" "public_ip" {
   name                = "publicIP-${var.project}"
   location            = var.location
   resource_group_name = azurerm_resource_group.rgGroup.name
