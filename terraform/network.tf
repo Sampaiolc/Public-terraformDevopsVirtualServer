@@ -30,7 +30,13 @@ resource "azurerm_public_ip" "public_ip" {
   resource_group_name = azurerm_resource_group.rgGroup.name
   allocation_method   = "Dynamic"
 
+
   tags = {
     "environment" = var.tag-environment[0]
   }
 }
+
+//resource "time_sleep" "wait_for_publicIP" {
+ // create_duration = "120s"
+  //depends_on = [azurerm_public_ip.public_ip]
+//}

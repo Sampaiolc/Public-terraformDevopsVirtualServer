@@ -7,7 +7,7 @@ variable "project" {
   type    = string
 }
 variable "vm_size" {
-  default = "Standard_B1ls"
+  default = "Standard_B1s"
   type    = string
 }
 
@@ -36,4 +36,12 @@ variable "adminUser" {
   type    = string
   default = "admaz"
 
+}
+
+variable "long_key" {
+  type = string
+  default = <<EOF
+This is a long key.
+Running over several lines.
+EOF
 }

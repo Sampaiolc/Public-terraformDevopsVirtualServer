@@ -1,7 +1,12 @@
 ---
- - hosts: all
+ - name: Setup web Server
+   hosts: all
    become: true
-
+   vars:
+     http_host: "example.com.br"
+     http_conf: "example.com.br.conf"
+     disable_default: true
+     
    tasks:
    - name: all update
      yum:
@@ -17,4 +22,42 @@
      service:
        name: httpd
        state: started
+       enabled: true
+
+   - name: Open firewall port 80
+     firewalld:
+      service: http
+      permanent: true
+      state: enabled
+      zone: public
+   
+   - name: reload service firewalld
+     systemd:
+      name: firewalld
+      state: reloaded
+  
+   - name: Copy WEB PAGE to remote server
+     copy:
+      src: ../pageHtml/
+      dest: "/var/www/html/{{ http_host }}"
+
+   - name: Copy HTTPD CONF to remote server
+     copy:
+      src: ../virtualHost/template.txt
+      dest: "/etc/httpd/conf.d/{{ http_conf }}"
+  
+   - name: Remove file HTTPD default conf
+     file: 
+       path: "{{ item }}"
+       state: absent
+     with_items:
+       - /etc/httpd/conf.d/welcome.conf
+       - /etc/httpd/conf.d/userdir.conf
+       - /etc/httpd/conf.d/autoindex.conf
+       - /etc/httpd/conf.d/README
+
+   - name: Reload HTTPD
+     service:
+       name: httpd
+       state: reloaded
        enabled: true

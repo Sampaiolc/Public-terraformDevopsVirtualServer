@@ -1,0 +1,23 @@
+# login no azure
+az login
+
+#criar group de recurso que usaremos para o remote state
+az group create --location brazilsouth --name terraformstate
+
+#criar storage account
+az storage account create --name tfmst --resource-group terraformstate --location brazilsouth --sku Standard_LRS
+
+#Criar conteiner do storage account
+az storage container create -n tfmst --account-name tfmst
+
+#Lista de size vm
+az vm list-skus --location WestEurope --output table
+
+#Details of size vm
+az vm list-skus --location westus2 --zone --size Standard_B1s
+
+#Set subscrition login
+az account set --subscription "Novo Cartao"
+
+#List subscription 
+az account list --output table
