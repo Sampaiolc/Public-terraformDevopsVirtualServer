@@ -9,9 +9,9 @@ terraform {
 provider "azurerm" {
   features {}
   
-  subscription_id   = var.azure_subscription
-  tenant_id         = var.azure_subscription_tenant
-  client_id         = var.service_principal_app
-  client_secret     = var.service_principal_password
+  subscription_id   = "${var.azure_subscription}"
+  tenant_id         = "${var.azure_subscription_tenant}"
+  client_id         = "${var.service_principal_app}"
+  client_secret     = "${var.service_principal_password}"
 }
 
