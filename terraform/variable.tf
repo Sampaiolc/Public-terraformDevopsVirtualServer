@@ -45,3 +45,19 @@ This is a long key.
 Running over several lines.
 EOF
 }
+
+variable "azure_subscription" {
+  type    = string
+}
+
+variable "azure_subscription_tenant" {
+  type    = string
+}
+
+variable "service_principal_app" {
+  type    = string
+}
+
+variable "service_principal_password" {
+  type    = string
+}
