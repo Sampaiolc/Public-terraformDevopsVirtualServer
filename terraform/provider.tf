@@ -7,7 +7,6 @@ terraform {
   }
 }
 provider "azurerm" {
-  skip_provider_registration = true
   features {}
   
   subscription_id   = "<azure_subscription_id>"
