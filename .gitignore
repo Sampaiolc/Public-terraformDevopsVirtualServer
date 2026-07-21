@@ -6,3 +6,9 @@ terraform/terraform.tfstate.backup
 terraform/.terraform/*
 
 terraform/.terraform.tfstate.lock.info
+
+# env files
+.env
+.env.*
+!.env.example
+!.env.sample
